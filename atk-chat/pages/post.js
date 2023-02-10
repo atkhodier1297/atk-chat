@@ -14,6 +14,7 @@ export default function Post() {
   //Form state
   const [post, setPost] = useState({ description: "" });
   const [user, loading] = useAuthState(auth)
+  const route = useRouter();
 
   //Submit Post
   const submitPost = async (e) => {
@@ -27,6 +28,19 @@ export default function Post() {
         username: user.displayName
     })
   };
+
+   //Check our user
+   const checkUser = async () => {
+    if (loading) return;
+    if (!user) route.push("/auth/login");
+    if (routeData.id) {
+      setPost({ description: routeData.description, id: routeData.id });
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, [user, loading]);
 
   return (
     <div className="my-20 p-12 shadow-lg rounded-lg max-w-md mx-auto">
