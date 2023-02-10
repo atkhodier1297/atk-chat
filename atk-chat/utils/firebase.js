@@ -9,12 +9,12 @@ import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID,
+  apiKey: "AIzaSyA45QJxWrxoIQh8ipUxjznEMDQPZvi--y0",
+  authDomain: "atk-chat.firebaseapp.com",
+  projectId: "atk-chat",
+  storageBucket: "atk-chat.appspot.com",
+  messagingSenderId: "261899106877",
+  appId: "1:261899106877:web:8648a645d6078443704854",
 };
 
 // Initialize Firebase
