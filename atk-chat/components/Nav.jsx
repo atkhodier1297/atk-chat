@@ -21,7 +21,7 @@ export default function Nav() {
                     {user && (
                         <div className="flex items-center gap-6">
                             <Link href="/post">
-                                <button className="font-medium bg-cyan-500 text-white py-2 px-4 rounded-mg">Post</button>
+                                <button className="rounded-lg font-medium bg-cyan-500 text-white py-2 px-4 rounded-mg">Post</button>
                             </Link>
                             <Link href="/dashboard">
                                 <img className="w-12 rounded-full cursor-pointer" src={user.photoURL} alt="user-avatar"/>
