@@ -29,6 +29,7 @@ export default function Post() {
         avatar: user.photoURL,
         username: user.displayName
     })
+    
   };
 
    //Check our user
