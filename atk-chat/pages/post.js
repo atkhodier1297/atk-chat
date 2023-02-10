@@ -15,6 +15,8 @@ export default function Post() {
   const [post, setPost] = useState({ description: "" });
   const [user, loading] = useAuthState(auth)
   const route = useRouter();
+  const routeData = route.query;
+
 
   //Submit Post
   const submitPost = async (e) => {
