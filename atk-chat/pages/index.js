@@ -9,7 +9,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <div className='my-12 text-xl font-medium'>
+        <h2>What's Happening Now</h2>
+      </div>
     </div>
   )
 }
+
+

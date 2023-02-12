@@ -7,8 +7,7 @@ import {
     serverTimestamp,
   } from "firebase/firestore";
 import { auth, db } from "@/utils/firebase";
-
-
+import { toast } from "react-toastify";
 
 export default function Post() {
   //Form state
@@ -16,11 +15,26 @@ export default function Post() {
   const [user, loading] = useAuthState(auth)
   const route = useRouter();
   const routeData = route.query;
-
-
+  
   //Submit Post
   const submitPost = async (e) => {
     e.preventDefault();
+    if(!post.description){
+      toast.error('Description is empty! 😡😡😡', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500,
+      })
+      return;
+    }
+    if(post.description.length > 100){
+      toast.error('Description is too long! 😡😡😡', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500,
+      })
+      return;
+    }
+
+    // create an if statement that throws a toast error saying Description is empty if !post.description.
     const collectionRef = collection(db, 'posts');
     await addDoc(collectionRef, {
         ...post,
@@ -28,7 +42,9 @@ export default function Post() {
         user: user.uid,
         avatar: user.photoURL,
         username: user.displayName
-    })
+    });
+    setPost({description: ""});
+    return route.push('/');
     
   };
 
@@ -45,8 +61,12 @@ export default function Post() {
     checkUser();
   }, [user, loading]);
 
+  function clear(){
+    setPost({description: ""})
+  }
+
   return (
-    <div className="my-20 p-12 shadow-lg rounded-lg max-w-md mx-auto">
+    <div className="my-20 p-12 shadow-lg shadow-cyan-600 rounded-lg max-w-md mx-auto">
       <form onSubmit={submitPost}>
         <h1 className="text-2xl font-bold">
           {post.hasOwnProperty("id") ? "Edit your post" : "Create a new post"}
@@ -56,11 +76,11 @@ export default function Post() {
           <textarea
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className="bg-gray-800 h-48 w-full text-white rounded-lg p-2 text-sm"
+            className="bg-cyan-600 h-48 w-full text-white rounded-lg p-2 text-sm"
           >
           </textarea>
           <p
-            className={`text-cyan-500 font-medium text-sm ${
+            className={`text-black font-medium text-sm ${
               post.description.length > 100 ? "text-red-600" : ""
             }`}
           >
@@ -69,11 +89,18 @@ export default function Post() {
         </div>
         <button
           type="submit"
-          className="w-full bg-cyan-500 text-white font-medium p-2 my-2 rounded-lg text-sm"
+          className="w-full bg-cyan-600 text-white font-medium p-2 my-2 rounded-lg text-sm"
         >
-          Submit
+          Submit Post
         </button>
       </form>
+      <button
+          onClick={clear}
+          className="w-full bg-cyan-600 text-white font-medium p-2 my-2 rounded-lg text-sm"
+        >
+          Clear
+        </button>
     </div>
+    
   );
 }
