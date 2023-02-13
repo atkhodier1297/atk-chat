@@ -29,7 +29,7 @@ export default function Home() {
       </Head>
 
       <div className='my-12 text-xl font-medium'>
-        <h2>What's Happening Now</h2>
+        <h2 className='pb-4'>What's Happening Now</h2>
         {allPosts.map(post => (
         <Message {...post}/>))}
       </div>
