@@ -31,7 +31,7 @@ export default function Home() {
       <div className='my-12 text-xl font-medium'>
         <h2 className='pb-4'>What's Happening Now</h2>
         {allPosts.map(post => (
-        <Message {...post}/>))}
+        <Message {...post} key={post.id}/>))}
       </div>
     </div>
   )
