@@ -2,11 +2,12 @@ import { auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
-import { collection, where, query, onSnapshot } from "firebase/firestore";
+import { collection, where, query, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Message from "@/components/Message";
 import { BsTrash2Fill } from 'react-icons/bs';
 import { AiFillEdit } from 'react-icons/ai';
+import Link from "next/link";
 
 export default function Dashboard(){
     const route = useRouter()
@@ -24,6 +25,11 @@ export default function Dashboard(){
         return unsubscribe;
     }
 
+    const deletePost = async(id) => {
+        const docRef = doc(db, 'posts', id,)
+        await deleteDoc(docRef)
+    }
+
     console.log(yourPosts)
 
     useEffect(() => {
@@ -38,8 +44,14 @@ export default function Dashboard(){
                     return(
                         <Message {...post} key={post.id}>
                             <div className="flex gap-4">
-                                <button className="text-cyan-600 flex items-center gap-2 py-2 text-sm"> <BsTrash2Fill className="text-2xl"/>Delete</button>
-                                <button className="text-cyan-600 flex items-center gap-2 py-2 text-sm"> <AiFillEdit className="text-2xl"/>Edit</button>
+                                <button onClick={() => deletePost(post.id)} className="text-red-600 flex items-center gap-2 py-2 text-sm"> 
+                                <BsTrash2Fill className="text-2xl"/>Delete
+                                </button>
+                                <Link href={{pathname: "/post", query: post}}>
+                                <button className="text-green-600 flex items-center gap-2 py-2 text-sm"> 
+                                <AiFillEdit className="text-2xl"/>Edit
+                                </button>
+                                </Link>
                             </div>
                         </Message>
                     );

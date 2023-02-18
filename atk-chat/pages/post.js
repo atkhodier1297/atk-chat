@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import {
     addDoc,
     collection,
+    doc,
     serverTimestamp,
+    updateDoc,
   } from "firebase/firestore";
 import { auth, db } from "@/utils/firebase";
 import { toast } from "react-toastify";
@@ -34,6 +36,14 @@ export default function Post() {
       return;
     }
 
+    if(post?.hasOwnProperty("id")){
+      const docRef = doc(db, 'posts', post.id);
+      const updatedPost = {...post, timestamp: serverTimestamp()};
+      await updateDoc(docRef, updatedPost);
+      return route.push('/')
+    }
+    else {
+
     // create an if statement that throws a toast error saying Description is empty if !post.description.
     const collectionRef = collection(db, 'posts');
     await addDoc(collectionRef, {
@@ -45,7 +55,7 @@ export default function Post() {
     });
     setPost({description: ""});
     return route.push('/');
-    
+    }
   };
 
    //Check our user
@@ -64,6 +74,8 @@ export default function Post() {
   function clear(){
     setPost({description: ""})
   }
+
+
 
   return (
     <div className="my-20 p-12 shadow-lg shadow-cyan-600 rounded-lg max-w-md mx-auto">
