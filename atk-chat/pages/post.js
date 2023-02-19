@@ -54,6 +54,7 @@ export default function Post() {
         username: user.displayName
     });
     setPost({description: ""});
+    toast.success("Post has been made!!!", {position: toast.POSITION.TOP_CENTER, autoClose: 1500 })
     return route.push('/');
     }
   };
@@ -86,9 +87,10 @@ export default function Post() {
         <div className="py-2">
           <h3 className="text-lg font-medium py-2">Description</h3>
           <textarea
+          placeholder="Type here 😀"
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className="bg-cyan-600 h-48 w-full text-white rounded-lg p-2 text-sm"
+            className="bg-gray-600 h-48 w-full text-white rounded-lg p-2 text-sm"
           >
           </textarea>
           <p
