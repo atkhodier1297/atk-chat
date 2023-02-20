@@ -14,18 +14,18 @@ export default function Nav() {
         <div>
             <nav className="flex justify-between items-center py-10">
                 <Link href="/">
-                    <button className="text-lg font-medium">atk-chat</button>
+                    <button className="text-lg font-bold">atk-chat</button>
                 </Link>
                 <ul className="flex items-center gap-10">
                     {!user && (
                     <Link href={'/auth/login'}>
-                       <p className="py-2 px-4 ext-sm bg-cyan-600 rounded-lg font-medium ml-8 text-white">Join Now</p>
+                       <p className="py-2 px-4 ext-sm bg-cyan-500 rounded-lg font-medium ml-8 text-white">Join Now</p>
                     </Link>
                     )}
                     {user && (
                         <div className="flex items-center gap-6">
                             <Link href="/post">
-                                <button className="rounded-lg font-medium bg-cyan-600 text-white py-2 px-4 rounded-mg">Post</button>
+                                <button className="rounded-lg font-medium bg-cyan-500 text-white py-2 px-4 rounded-mg">Post</button>
                             </Link>
                             <Link href="/dashboard">
                                 <img className="w-12 rounded-full cursor-pointer" src={user.photoURL} alt="user-avatar"/>

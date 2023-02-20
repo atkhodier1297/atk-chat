@@ -67,12 +67,12 @@ export default function Details() {
             onChange={(e) => setMessage(e.target.value)}
             type="text"
             value={message}
-            placeholder="Send a message 😀"
-            className="bg-gray-800 w-full p-2 text-white text-sm"
+            placeholder="Reply here 😀"
+            className="bg-gray-100 w-full p-2 text-black text-sm"
           />
           <button
             onClick={submitMessage}
-            className="bg-cyan-500 text-white py-2 px-4 text-sm"
+            className="text-sm bg-cyan-500 text-white py-2 px-4 rounded-mg"
           >
             Submit
           </button>
@@ -80,7 +80,7 @@ export default function Details() {
         <div className="py-6">
           <h2 className="font-bold">Comments</h2>
           {allMessage?.map((message) => (
-            <div className="bg-white p-4 my-4 border-2" key={message.time}>
+            <div className="bg-white shadow-lg shadow-cyan-500 p-4 my-4 border-2" key={message.time}>
               <div className="flex items-center gap-2 mb-4">
                 <img
                   className="w-10 rounded-full"

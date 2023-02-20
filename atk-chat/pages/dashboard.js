@@ -38,7 +38,7 @@ export default function Dashboard(){
     return(
         <>
         <div className='my-12 text-xl font-medium'>
-            <h1 className="pb-4">Your Posts</h1>
+            <h1 className="pb-4 font-bold">Your Posts</h1>
             <div>
                 {yourPosts.map((post) => {
                     return(
@@ -58,7 +58,7 @@ export default function Dashboard(){
                 })}
             </div>
         </div>
-        <button className="rounded-lg font-medium bg-cyan-600 text-white py-2 px-4 rounded-mg" onClick={() => auth.signOut()}>Sign Out</button>
+        <button className="rounded-lg font-medium bg-cyan-500 text-white py-2 px-4 rounded-mg" onClick={() => auth.signOut()}>Sign Out</button>
         </>
     )
 }
